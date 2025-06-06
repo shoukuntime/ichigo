@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+</head>
+<body>
+<section class="hero is-danger is-fullheight">
+    <div class="box" style="margin: auto 20%;">
+        <div class="title">ユーザー設定</div>
+        <a class='a box' href="{% url 'home' %}">いちごゲーム</a>
+        <form class="box" method="post">
+            {% csrf_token %}
+            目標:<input class="input column box" type="number" name="target" required value="{{ request.POST.target }}">
+            <div class="columns">
+                <input class="input column" type="number" name="num1" value="{{ request.POST.num1 }}">
+                <input class="input column" type="number" name="num2" value="{{ request.POST.num2 }}">
+                <input class="input column" type="number" name="num3" value="{{ request.POST.num3 }}">
+                <input class="input column" type="number" name="num4" value="{{ request.POST.num4 }}">
+                <input class="input column" type="number" name="num5" value="{{ request.POST.num5 }}">
+                <button class="button" type="submit">計算！</button>
+            </div>
+        </form>
+
+        {% if result %}
+            <div class="subtitle">結果：</div>
+            <div class="box subtitle">{{ result }}</div>
+        {% endif %}
+    </div>
+</section>
+</body>
+</html>
